@@ -32,11 +32,20 @@ jobs:
       - run: npm ci
       - run: CI=false npm run build --if-present    
 
-      # Upload build artifacts for deployment
+      # List existing artifacts (for debugging)
+      - name: List current artifacts
+        run: gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts --jq '.artifacts[].name'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Delete previous artifact (only if it exists)
       - name: Delete previous artifact
+        continue-on-error: true  # Prevent failure if artifact doesn't exist
         uses: geekyeggo/delete-artifact@v2
         with:
-          name: github-pages  # This must match the artifact name used in upload
+          name: github-pages  
+
+      # Upload build artifacts for deployment
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
