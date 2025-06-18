@@ -6,6 +6,8 @@ import html2canvas from "html2canvas";
 import seal from "./Assets/seal.png";
 import numberToText from "number2text/lib/numberToText";
 import { useState } from "react";
+import { FaDownload } from "react-icons/fa";
+import { Button } from "@mui/material";
 const styles = {
   th: {
     textAlign: "left",
@@ -27,6 +29,7 @@ const styles = {
   },
 };
 export default function IndianOfferLetter({ formData }) {
+  const [width, setWidth] = useState("480mm");
   const [isDownloading, setIsDownloading] = useState(false);
   console.log("Form data submitted:", formData);
   const data = {
@@ -185,6 +188,7 @@ export default function IndianOfferLetter({ formData }) {
 
   const handleDownload = async () => {
     setIsDownloading(true);
+    setWidth("300mm");
     await new Promise((resolve) => setTimeout(resolve, 100));
     const pdf = new jsPDF("p", "mm", "a4");
     const pageWidth = 210; // A4 width
@@ -241,19 +245,24 @@ export default function IndianOfferLetter({ formData }) {
   }
   return (
     <>
-      <button
+    
+      <Button
         type="button"
         onClick={handleDownload}
         style={{
-          marginTop: "20px",
+          marginTop: "-40px",
           padding: "10px 20px",
-          fontSize: "10px",
+          fontSize: "17px",
           height: "5vh",
-          width: "11vw",
+          width: "4vw",
+          border: "none",
+          background: "transparent",
+          color: "white",
+          marginLeft: "93%",
         }}
       >
-        Download {formData.country === "India" ? "Indian" : "USA"} Offer Letter
-      </button>
+        <FaDownload />
+      </Button>
       {!isDownloading && (
         <div
           style={{
@@ -267,7 +276,7 @@ export default function IndianOfferLetter({ formData }) {
           <div
             id="pages1"
             style={{
-              width: "300mm",
+              width: { width },
               // minHeight: "297mm",
               // padding: "100px",
               margin: "10px",
@@ -484,7 +493,16 @@ export default function IndianOfferLetter({ formData }) {
                   <img
                     src={URL.createObjectURL(formData.signature)}
                     alt="Signature"
-                    style={{ width: "15vw", height: "10vh" }}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "150px",
+                      objectFit: "contain", // important
+                      display: "block",
+                      marginTop: "10px",
+                      border: "1px solid #ccc",
+                      padding: "4px",
+                    }}
+                    // style={{ width: "15vw", height: "10vh" }}
                   />
                 ) : (
                   <span style={{ color: "#ccc" }}>Signature</span>
@@ -599,9 +617,9 @@ export default function IndianOfferLetter({ formData }) {
             </p>
             <p>
               If you don’t join the company by{" "}
-              {moment(formData.joiningDate).format("MMMM DD, YYYY")} , this offer
-              will be cancelled without further notice. Your appointment is
-              effective from the day you start work, which must not be later
+              {moment(formData.joiningDate).format("MMMM DD, YYYY")} , this
+              offer will be cancelled without further notice. Your appointment
+              is effective from the day you start work, which must not be later
               than the joining date. Any request to change the date will only be
               valid if communicated and approved in writing.
             </p>

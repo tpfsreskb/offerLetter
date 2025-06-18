@@ -6,6 +6,8 @@ import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
 import numberToText from "number2text/lib/numberToText";
 import seal from "./Assets/seal.png";
+import { Button } from "@mui/material";
+import { FaDownload } from "react-icons/fa";
 // import { textAlign } from "html2canvas/dist/types/css/property-descriptors/text-align";
 const styles = {
   th: {
@@ -244,6 +246,7 @@ export default function UsofferLetter({ formData }) {
   };
   const handleDownload = async () => {
     setIsDownloading(true);
+    setWidth('300mm')
     await new Promise((resolve) => setTimeout(resolve, 100));
     const pdf = new jsPDF("p", "mm", "a4");
     const pageWidth = 210; // A4 width
@@ -291,37 +294,43 @@ export default function UsofferLetter({ formData }) {
     pdf.addPage();
     await addPageContent("page-6");
     pdf.save("pageletter.pdf");
+      setIsDownloading(false);
   };
+  const [width,setWidth] = useState('376mm')
   return (
     <>
-      <button
+      <Button title="Download offer Letter"
         type="button"
         onClick={handleDownload}
         style={{
-          marginTop: "20px",
+          marginTop: "-40px",
           padding: "10px 20px",
-          fontSize: "10px",
+          fontSize: "17px",
           height: "5vh",
-          width: "11vw",
+          width: "4vw",
+          border: "none",
+          background: "transparent",
+          color: "white",
+          marginLeft: "93%",
         }}
       >
-        Download
-        {/* {formData.country === "India" ? "Indian" : "USA"} Offer Letter */}
-      </button>
+        <FaDownload />
+      </Button>
       {!isDownloading && (
         <div
           style={{
+            // padding:'20px',
             display: "flex",
             flexDirection: "column",
             width: "99vw",
             height: "94vh",
-            overflow: "scroll",
+            overflow: "hidden",
           }}
         >
           <div
             id="pages1"
             style={{
-              width: "300mm",
+              width: { width },
               // minHeight: "297mm",
               // padding: "100px",
               margin: "10px",
