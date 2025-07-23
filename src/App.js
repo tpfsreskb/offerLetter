@@ -1220,17 +1220,26 @@ function App() {
           maxWidth: "100vw",
           display: "flex",
           flexDirection: "column",
-          overflow: "hidden",
+          // overflow: "hidden",
         }}
       >
-        <Box sx={{ background: "#02026e", width: "100vw", height: "4vh" }}>
+        <Box sx={{ background: "#02026e", width: "100vw", height: "6vh" }}>
           <Button
             title="Edit form"
             sx={{
-              position: "absolute",
-              left: "96%",
+              marginTop: "6px",
+              padding: "10px 20px",
+              fontSize: "22px",
+              height: "5vh",
+              width: "4vw",
+              border: "none",
+              background: "transparent",
               color: "white",
-              fontSize: "23px",
+              marginLeft: "95%",
+              // position: "absolute",
+              // left: "96%",
+              // color: "white",
+              // fontSize: "23px",
             }}
             onClick={() => {
               setOpen(true);

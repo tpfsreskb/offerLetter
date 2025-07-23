@@ -250,7 +250,7 @@ export default function IndianOfferLetter({ formData }) {
         type="button"
         onClick={handleDownload}
         style={{
-          marginTop: "-40px",
+          marginTop: "-33px",
           padding: "10px 20px",
           fontSize: "17px",
           height: "5vh",
@@ -258,7 +258,7 @@ export default function IndianOfferLetter({ formData }) {
           border: "none",
           background: "transparent",
           color: "white",
-          marginLeft: "93%",
+          marginLeft: "89%",
         }}
       >
         <FaDownload />

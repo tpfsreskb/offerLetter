@@ -303,7 +303,7 @@ export default function UsofferLetter({ formData }) {
         type="button"
         onClick={handleDownload}
         style={{
-          marginTop: "-40px",
+          marginTop: "-33px",
           padding: "10px 20px",
           fontSize: "17px",
           height: "5vh",
@@ -311,7 +311,7 @@ export default function UsofferLetter({ formData }) {
           border: "none",
           background: "transparent",
           color: "white",
-          marginLeft: "93%",
+          marginLeft: "89%",
         }}
       >
         <FaDownload />
@@ -323,8 +323,9 @@ export default function UsofferLetter({ formData }) {
             display: "flex",
             flexDirection: "column",
             width: "99vw",
-            height: "94vh",
-            overflow: "hidden",
+            height: "92vh",
+            overflow: "scroll",
+            marginTop:"10px"
           }}
         >
           <div
